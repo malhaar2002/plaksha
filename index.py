@@ -4,7 +4,7 @@ import os
 
 
 print('Logging in...')
-client = commands.Bot(command_prefix='plaksha')
+client = commands.Bot(command_prefix='plaksha ')
 print('Logged in!   ')
 
 
