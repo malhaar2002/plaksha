@@ -18,4 +18,8 @@ async def calling(ctx):
   await ctx.send(f'Indeed, just {days} days before {commencement_date}')
   pass
 
+for filename in os.listdir('./cogs'):
+  if filename.ends_with(.py):
+    client.load_extension(f'cogs.{filename[:-3]}')
+
 client.run(os.environ['DISCORD_TOKEN'])
