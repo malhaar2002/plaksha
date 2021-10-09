@@ -36,7 +36,7 @@ async def tag(ctx):
   else:
     
 
-    category = discord.utils.get(ctx.guild.channel, id=850043220020559933)
+    category = discord.utils.get(ctx.guild.channels, id=850043220020559933)
     str_upskill_channels = ''
 
     for channel_element in category.channels:
