@@ -31,6 +31,14 @@ async def tag(ctx):
   if ctx.message.channel.category.id == 850043220020559933:
     if ctx.message.reference:
       await ctx.message.reference.reply('This?')
+  else:
+    category = discord.utils.get(guild.Channel, id=850043220020559933)
+    str_upskill_channels = ''
+
+    for channel_element in category:
+      str_upskill_channels += channel_element + ' '
+
+    await ctx.reply(f'{ctx.author} this should be used inside one of {str_upskill_channels}')
 
 
 
