@@ -10,7 +10,7 @@ class upskill(commands.Cog):
   async def on_message(self, message:str):
     
     if message.startswith(ping):
-      await ctx.send(pong!)
+      await ctx.send('pong!')
 
     pass
 
