@@ -79,7 +79,7 @@ async def create(ctx, *, tag_name:str=''):
         return
 
     else:
-      Upskill_Dict[tag_name] = await (ctx.message.reference.resolved).content
+      Upskill_Dict[tag_name] = (ctx.message.reference.resolved).content
       await ctx.message.reply(f'Tag was created! Use```plaksha upskill tag {tag_name}```To reference it in the future!!')
   else:
     await ctx.send(f'{(ctx.author).mention} Please input a NAME for the tag```plaksha upskill tag create NAME```', reference=ctx.message.reference)
