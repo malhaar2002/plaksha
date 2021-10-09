@@ -28,7 +28,7 @@ async def upskill(ctx):
 
 @upskill.command(name='tag', invoke_without_command=True)
 async def tag(ctx):
-  if ctx.category.id = 850043220020559933:
+  if ctx.category.id == 850043220020559933:
     if ctx.message.reference:
       await ctx.message.reference.reply('This?')
 
