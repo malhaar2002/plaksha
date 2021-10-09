@@ -45,7 +45,7 @@ async def tag(ctx):
       if not(ctx.message.reference.fail_if_not_exists):
         await ctx.message.reply('Sorry this message may have been deleted!')
       else:
-        await ctx.send('Please define what do you want to do with this message.\n> For creating a tag of this use ```plaksha upskill tag create NAME```', reference=message.refrence)
+        await ctx.send('Please define what do you want to do with this message.\n> For creating a tag of this use ```plaksha upskill tag create NAME```', reference=ctx.message.refrence)
     else:
       await ctx.message.reply('Please reply/refer to a message while tagging it.')
     
