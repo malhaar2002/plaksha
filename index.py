@@ -57,7 +57,7 @@ async def tag(ctx, *, tag_name:str=''):
   else:
     # Add better search and nearby words later on
     if tag_name in Upskill_Dict.keys():
-      await ctx.message.reply(f'{Upskill_Dict[tag_name}')
+      await ctx.message.reply(f'{Upskill_Dict[tag_name]}')
     else:
       await ctx.message.reply(f'There is no tag with this name\n> {tag_name}')
       
