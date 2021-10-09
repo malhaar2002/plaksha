@@ -32,13 +32,13 @@ async def calling(ctx):
 
 
 
-@client.group(name='upskill', invoke_without_command=True)
+@client.group(aliases=['learn'], invoke_without_command=True)
 async def upskill(ctx):
   await ctx.send(create_embed())
   pass
 
 
-@upskill.group(aliases=['tag', 'fav', 'push'], invoke_without_command=True)
+@upskill.group(aliases=['fav', 'push'], invoke_without_command=True)
 async def tag(ctx):
   if ctx.message.channel.category.id == 850043220020559933:
     if ctx.message.reference:
@@ -56,7 +56,7 @@ async def tag(ctx):
 
     await ctx.reply(f'{ctx.author} this should be used inside one of {category}')
 
-@tag.group(aliases=['create', '+'], invoke_without_command=True)
+@tag.group(aliases=['+'], invoke_without_command=True)
 async def create(ctx, name:str):
   pass
   
