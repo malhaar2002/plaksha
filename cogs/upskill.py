@@ -7,7 +7,7 @@ class upskill(commands.Cog):
     self.client = client
 
   @commands.Cog.listener()
-  async def on_message(message:str):
+  async def on_message(self, message:str):
     
     if message.startswith(ping):
       await ctx.send(pong!)
@@ -15,7 +15,7 @@ class upskill(commands.Cog):
     pass
 
   @commands.command()
-  async def suggest(ctx, anonymous:bool=False, *, message:str):
+  async def suggest(self, ctx, anonymous:bool=False, *, message:str):
 
     if anonymous:
       ctx.guild.owner.send(f'Somebody anonymously suggested/n{message}')
