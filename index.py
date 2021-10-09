@@ -104,7 +104,7 @@ async def more_over(ctx, *, tag_name:str=''):
 
         if tag_name in name_element_list:
 
-          
+          # CONTENT VS NAME create a function to check both at the same time
           
           Tag_Dict[name_element_list] = content_element.append(ctx.message.reference.resolved.content)
           return
