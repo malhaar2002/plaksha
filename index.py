@@ -39,7 +39,7 @@ async def upskill(ctx):
 
 
 @upskill.group(aliases=['fav', 'push'], invoke_without_command=True)
-async def tag(ctx, tag_name:str=''):
+async def tag(ctx, *, tag_name:str=''):
   if tag_name == '':
     if ctx.message.channel.category.id == 850043220020559933:
       if ctx.message.reference:
