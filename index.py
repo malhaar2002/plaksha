@@ -59,9 +59,9 @@ async def tag(ctx):
 
 @tag.group(aliases=['+'], invoke_without_command=True)
 async def create(ctx, name:str=''):
-  Upskill_Dict[name] = message.reference
+  Upskill_Dict[name] = ctx.message.reference
 
-  if name != ' ':
+  if name != '':
 
     await ctx.message.reply(f'Tag was created! Use```plaksha upskill tag {name}```To reference it in the future!!')
   else:
