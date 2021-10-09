@@ -20,13 +20,13 @@ async def calling(ctx):
 
 
 
-@client.group(name='upskill', invoke_without_command=True):
+@client.group(name='upskill', invoke_without_command=True)
 async def upskill(ctx):
   await ctx.send(create_embed(), timeout='60')
   pass
 
 
-@upskill.command(name='tag', invoke_without_command=True):
+@upskill.command(name='tag', invoke_without_command=True)
  async def tag(ctx):
   if ctx.category.id = 850043220020559933:
     if ctx.message.reference:
