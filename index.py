@@ -49,8 +49,8 @@ async def tag(ctx, *, tag_name:str=''):
 
   else:
     # Add better search and nearby words later on
-    if tag_name in Upskill_Dict.keys():
-      await ctx.send(f'{Upskill_Dict[tag_name]}', reference=ctx.message.reference)
+    if tag_name in Tag_Dict.keys():
+      await ctx.send(f'{Tag_Dict[tag_name]}', reference=ctx.message.reference)
     else:
       await ctx.message.reply(f'There is no tag with this name\n> {tag_name}')
       
@@ -62,9 +62,9 @@ async def tag(ctx, *, tag_name:str=''):
 async def create(ctx, *, tag_name:str=''):
 
   if tag_name != '':
-    for name_element, content_element in Upskill_Dict.items():
+    for name_element, content_element in Tag_Dict.items():
       if tag_name == name_element:
-        await ctx.message.reply(f'{ctx.author.mention} ```There already exists a tag with this name!!```with content\n> {Upskill_Dict[tag_name]}')
+        await ctx.message.reply(f'{ctx.author.mention} ```There already exists a tag with this name!!```with content\n> {Tag_Dict[tag_name]}')
         return
 
       elif (ctx.message.reference.resolved).content == content_element:
