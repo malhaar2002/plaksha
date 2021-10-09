@@ -75,14 +75,14 @@ async def create(ctx, *, tag_name:str=''):
         return
 
       elif (ctx.channel.fetch_message(ctx.message.reference.message_id)).content == content_element:
-        await ctx.message.send(f'{ctx.author.mention} There already exists a tag with this content!!\nWith the name\n> {name_element}', reference=ctx.message.reference)
+        await ctx.send(f'{ctx.author.mention} There already exists a tag with this content!!\nWith the name\n> {name_element}', reference=ctx.message.reference)
         return
 
     else:
       Upskill_Dict[tag_name] = await (ctx.channel.fetch_message((ctx.message.reference.message_id))).content
       await ctx.message.reply(f'Tag was created! Use```plaksha upskill tag {tag_name}```To reference it in the future!!')
   else:
-    await ctx.message.send(f'{(ctx.author).mention} Please input a NAME for the tag```plaksha upskill tag create NAME```', reference=ctx.message.reference)
+    await ctx.send(f'{(ctx.author).mention} Please input a NAME for the tag```plaksha upskill tag create NAME```', reference=ctx.message.reference)
   pass
   
   
