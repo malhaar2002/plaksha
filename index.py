@@ -22,7 +22,7 @@ async def calling(ctx):
 
 @client.group(name='upskill', invoke_without_command=True)
 async def upskill(ctx):
-  await ctx.send(create_embed(), timeout='60')
+  await ctx.send(create_embed())
   pass
 
 
