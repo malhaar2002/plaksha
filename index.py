@@ -34,10 +34,12 @@ async def tag(ctx):
 
 
   else:
-    category = discord.utils.get(ctx.guild.category, id=850043220020559933)
+    
+
+    category = discord.utils.get(ctx.guild.channel, id=850043220020559933)
     str_upskill_channels = ''
 
-    for channel_element in category:
+    for channel_element in category.channels:
       str_upskill_channels += channel_element + ' '
 
     await ctx.reply(f'{ctx.author} this should be used inside one of {str_upskill_channels}')
