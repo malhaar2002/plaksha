@@ -66,9 +66,9 @@ async def tag(ctx, tag_name:str=''):
 
 
 @tag.group(aliases=['+'], invoke_without_command=True)
-async def create(ctx, *, name:str=''):
+async def create(ctx, *, tag_name:str=''):
 
-  if name != '':
+  if tag_name != '':
     for name_element, content_element in Upskill_Dict.items():
       if tag_name == name_element:
         await ctx.message.reply(f'{ctx.author.mention} ```There already exists a tag with this name!!```with content\n> {Upskill_Dict[name]}')
@@ -79,8 +79,8 @@ async def create(ctx, *, name:str=''):
         return
 
     else:
-      Upskill_Dict[name] = (ctx.channel.fetch_message((ctx.message.reference.message_id))).content
-      await ctx.message.reply(f'Tag was created! Use```plaksha upskill tag {name}```To reference it in the future!!')
+      Upskill_Dict[tag_name] = (ctx.channel.fetch_message((ctx.message.reference.message_id))).content
+      await ctx.message.reply(f'Tag was created! Use```plaksha upskill tag {tag_name}```To reference it in the future!!')
   else:
     await ctx.message.reply(f'{(ctx.author).mention} Please input a NAME for the tag```plaksha upskill tag create NAME```')
   pass
