@@ -7,8 +7,7 @@ print('Logging in...')
 client = commands.Bot(command_prefix='plaksha ', intents=discord.Intents(guilds=True, members=True, messages=True, reactions=True, presences=True))
 print('Logged in!   ')
 
-Upskill_Dict =
-{
+Upskill_Dict = {
   'Leader_Board' :
     {
       'username': 'number_of_praises',
