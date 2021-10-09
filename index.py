@@ -55,6 +55,20 @@ async def tag(ctx, tag_name:str=''):
       await ctx.reply(f'{ctx.author} this should be used inside one of {category}')
 
   else:
+    # Add better search and nearby words later on
+    if tag_name in Upskill_Dict.keys():
+      await ctx.message.reply(f'{Upskill_Dict(tag_name)}')
+    else:
+      await ctx.message.reply(f'There is no tag with this name\n> {tag_name}')
+      
+
+
+
+
+@tag.group(aliases=['+'], invoke_without_command=True)
+async def create(ctx, *, name:str=''):
+
+  if name != '':
     for name_element, content_element in Upskill_Dict.items():
       if tag_name == name_element:
         await ctx.message.reply(f'{ctx.author.mention} ```There already exists a tag with this name!!```with content\n> {Upskill_Dict[name]}')
@@ -65,20 +79,9 @@ async def tag(ctx, tag_name:str=''):
         return
 
     else:
-    if IdontUseLoopElse_New_Name:
-      
-
-
-
-
-@tag.group(aliases=['+'], invoke_without_command=True)
-async def create(ctx, *, name:str=''):
-
-  if name != '':
-    Upskill_Dict[name] = (ctx.channel.fetch_message((ctx.message.reference.message_id))).content
-    await ctx.message.reply(f'Tag was created! Use```plaksha upskill tag {name}```To reference it in the future!!')
+      Upskill_Dict[name] = (ctx.channel.fetch_message((ctx.message.reference.message_id))).content
+      await ctx.message.reply(f'Tag was created! Use```plaksha upskill tag {name}```To reference it in the future!!')
   else:
-    
     await ctx.message.reply(f'{(ctx.author).mention} Please input a NAME for the tag```plaksha upskill tag create NAME```')
   pass
   
