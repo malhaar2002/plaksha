@@ -39,30 +39,43 @@ async def upskill(ctx):
 
 
 @upskill.group(aliases=['fav', 'push'], invoke_without_command=True)
-async def tag(ctx):
-  if ctx.message.channel.category.id == 850043220020559933:
-    if ctx.message.reference:
-      if not(ctx.message.reference.fail_if_not_exists):
-        await ctx.message.reply('Sorry this message may have been deleted!')
+async def tag(ctx, tag_name:str=''):
+  if tag_name == '':
+    if ctx.message.channel.category.id == 850043220020559933:
+      if ctx.message.reference:
+        if not(ctx.message.reference.fail_if_not_exists):
+          await ctx.message.reply('Sorry this message may have been deleted!')
+        else:
+          await ctx.send('*Please define what do you want to do with this message.*\n> For **creating a tag** of this, Use ```plaksha upskill tag create NAME```', reference=ctx.message.reference)
       else:
-        await ctx.send('*Please define what do you want to do with this message.*\n> For **creating a tag** of this, Use ```plaksha upskill tag create NAME```', reference=ctx.message.reference)
+        await ctx.message.reply('Please reply/refer to a message while tagging it.')
     else:
-      await ctx.message.reply('Please reply/refer to a message while tagging it.')
-    
+      category = discord.utils.get(ctx.guild.channels, id=850043220020559933)
 
+      await ctx.reply(f'{ctx.author} this should be used inside one of {category}')
 
   else:
-    category = discord.utils.get(ctx.guild.channels, id=850043220020559933)
+    for name_element, content_element in Upskill_Dict.items():
+      if tag_name == name_element:
+        await ctx.message.reply(f'{ctx.author.mention} ```There already exists a tag with this name!!```with content\n> {Upskill_Dict[name]}')
+        return
 
-    await ctx.reply(f'{ctx.author} this should be used inside one of {category}')
+      elif (ctx.channel.fetch_message(ctx.message.reference.message_id)).content == content_element:
+        await ctx.message.send(f'{ctx.author.mention} There already exists a tag with this content!!\nWith the name\n> {name_element}', reference=ctx.message.reference)
+        return
+
+    else:
+    if IdontUseLoopElse_New_Name:
+      
+
+
 
 
 @tag.group(aliases=['+'], invoke_without_command=True)
-async def create(ctx, name:str=''):
-  Upskill_Dict[name] = ctx.message.reference
+async def create(ctx, *, name:str=''):
 
   if name != '':
-
+    Upskill_Dict[name] = (ctx.channel.fetch_message((ctx.message.reference.message_id))).content
     await ctx.message.reply(f'Tag was created! Use```plaksha upskill tag {name}```To reference it in the future!!')
   else:
     
