@@ -48,28 +48,49 @@ async def tag(ctx, *, tag_name:str=''):
 @tag.group(aliases=['+'], invoke_without_command=True)
 async def create(ctx, *, tag_name:str=''):
 
+
   if ctx.message.reference != None:
+
     if not(ctx.message.reference.fail_if_not_exists):
       await ctx.message.reply('Sorry this message may have been deleted!')
+
+
     else:
-      await ctx.send('*Please define what do you want to do with this message.*\n> For **creating a tag** of this, Use ```plaksha tag create NAME```', reference=ctx.message.reference)
+
+      if tag_name != '':
+
+
+        for name_element_list, content_element_list in Tag_Dict.items():
+
+          if tag_name in name_element_list:
+
+            await ctx.message.reply(f'{ctx.author.mention}\n> There already exists a tag with this name {tag_name}!!\nwith content\n> {Tag_Dict[tag_name]}\nIf you want to add stuff in this tag Use:```plaksha tag more-over Name```')
+            return
+
+          elif (ctx.message.reference.resolved).content in content_element_list:
+
+            del Tag_Dict[name_element_list]
+            name_element_list.append(tag_name)
+
+            Tag_Dict[name_element_list] = content_element_list
+            
+            await ctx.send(f'This content is already tagged, added an alias for this content! Use```plaksha tag {tag_name}```To reference it in the future!!', refeerence=ctx.message.reference)
+            return
+
+        else:
+          Tag_Dict[[tag_name]] = [(ctx.message.reference.resolved).content]
+          await ctx.message.reply(f'Tag was created! Use```plaksha tag {tag_name}```To reference it in the future!!')
+
+
+
+      else:
+        await ctx.send(f'{(ctx.author).mention} Please input a NAME for the tag```plaksha tag create NAME```', reference=ctx.message.reference)
+      pass
+
   else:
     await ctx.message.reply('Please reply/refer to a message while tagging it.')
 
-  if tag_name != '':
-    for name_element_list, content_element_list in Tag_Dict.items():
-      if tag_name in name_element_list:
-        await ctx.message.reply(f'{ctx.author.mention} ```There already exists a tag with this name {tag_name}!!```with content\n> {Tag_Dict[tag_name]}\n')
-        await ctx.send(f'Add this content to this ****')
-        return
-    elif (ctx.message.reference.resolved).content
 
-    else:
-      Tag_Dict[tag_name] = (ctx.message.reference.resolved).content
-      await ctx.message.reply(f'Tag was created! Use```plaksha tag {tag_name}```To reference it in the future!!')
-  else:
-    await ctx.send(f'{(ctx.author).mention} Please input a NAME for the tag```plaksha tag create NAME```', reference=ctx.message.reference)
-  pass
   
   
 
