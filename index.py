@@ -31,13 +31,6 @@ async def calling(ctx):
   pass
 
 
-
-@client.group(aliases=['learn'], invoke_without_command=True)
-async def upskill(ctx):
-  await ctx.send(create_embed())
-  pass
-
-
 @upskill.group(aliases=['fav', 'push'], invoke_without_command=True)
 async def tag(ctx, *, tag_name:str=''):
   if tag_name == '':
