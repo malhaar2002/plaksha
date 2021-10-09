@@ -74,7 +74,7 @@ async def create(ctx, *, tag_name:str=''):
         await ctx.message.reply(f'{ctx.author.mention} ```There already exists a tag with this name!!```with content\n> {Upskill_Dict[name]}')
         return
 
-      elif (ctx.channel.fetch_message(ctx.message.reference.message_id)).content == content_element:
+      elif (ctx.message.reference.resolved).content == content_element:
         await ctx.send(f'{ctx.author.mention} There already exists a tag with this content!!\nWith the name\n> {name_element}', reference=ctx.message.reference)
         return
 
