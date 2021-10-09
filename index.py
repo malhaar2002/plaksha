@@ -45,7 +45,7 @@ async def tag(ctx):
       if not(ctx.message.reference.fail_if_not_exists):
         await ctx.message.reply('Sorry this message may have been deleted!')
       else:
-        await ctx.message.MessageReference.reply('Please define what do you want to do with this message.\n> For creating a tag of this use ```plaksha upskill tag create NAME```')
+        await ctx.message.refence.reply('Please define what do you want to do with this message.\n> For creating a tag of this use ```plaksha upskill tag create NAME```')
     else:
       await ctx.message.reply('Please reply/refer to a message while tagging it.')
     
@@ -55,6 +55,7 @@ async def tag(ctx):
     category = discord.utils.get(ctx.guild.channels, id=850043220020559933)
 
     await ctx.reply(f'{ctx.author} this should be used inside one of {category}')
+
 
 @tag.group(aliases=['+'], invoke_without_command=True)
 async def create(ctx, name:str):
