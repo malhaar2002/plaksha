@@ -30,7 +30,7 @@ async def upskill(ctx):
 async def tag(ctx):
   if ctx.message.channel.category.id == 850043220020559933:
     if ctx.message.reference:
-      await ctx.message.reference.reply('This?')
+      await ctx.message.reply('This?')
 
 
   else:
