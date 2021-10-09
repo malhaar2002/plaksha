@@ -1,0 +1,5 @@
+discord
+asyncio
+psutil
+timeago==1.0.13
+discord-components
