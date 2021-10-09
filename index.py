@@ -71,7 +71,7 @@ async def create(ctx, *, tag_name:str=''):
   if tag_name != '':
     for name_element, content_element in Upskill_Dict.items():
       if tag_name == name_element:
-        await ctx.message.reply(f'{ctx.author.mention} ```There already exists a tag with this name!!```with content\n> {Upskill_Dict[name]}')
+        await ctx.message.reply(f'{ctx.author.mention} ```There already exists a tag with this name!!```with content\n> {Upskill_Dict[tag_name]}')
         return
 
       elif (ctx.message.reference.resolved).content == content_element:
