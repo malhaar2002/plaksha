@@ -32,7 +32,7 @@ async def tag(ctx):
     if ctx.message.reference:
       await ctx.message.reference.reply('This?')
   else:
-    category = discord.utils.get(guild.Channel, id=850043220020559933)
+    category = discord.utils.get(guild.category, id=850043220020559933)
     str_upskill_channels = ''
 
     for channel_element in category:
