@@ -39,7 +39,7 @@ async def tag(ctx, *, tag_name:str=''):
         if not(ctx.message.reference.fail_if_not_exists):
           await ctx.message.reply('Sorry this message may have been deleted!')
         else:
-          await ctx.send('*Please define what do you want to do with this message.*\n> For **creating a tag** of this, Use ```plaksha upskill tag create NAME```', reference=ctx.message.reference)
+          await ctx.send('*Please define what do you want to do with this message.*\n> For **creating a tag** of this, Use ```plaksha tag create NAME```', reference=ctx.message.reference)
       else:
         await ctx.message.reply('Please reply/refer to a message while tagging it.')
     else:
@@ -73,9 +73,9 @@ async def create(ctx, *, tag_name:str=''):
 
     else:
       Tag_Dict[tag_name] = (ctx.message.reference.resolved).content
-      await ctx.message.reply(f'Tag was created! Use```plaksha upskill tag {tag_name}```To reference it in the future!!')
+      await ctx.message.reply(f'Tag was created! Use```plaksha tag {tag_name}```To reference it in the future!!')
   else:
-    await ctx.send(f'{(ctx.author).mention} Please input a NAME for the tag```plaksha upskill tag create NAME```', reference=ctx.message.reference)
+    await ctx.send(f'{(ctx.author).mention} Please input a NAME for the tag```plaksha tag create NAME```', reference=ctx.message.reference)
   pass
   
   
