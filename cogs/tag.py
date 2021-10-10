@@ -62,7 +62,7 @@ class Tag(commands.Cog):
                 await ctx.message.reply('Please reply/refer to a message while tagging it.')
 
         else:
-            content_present, name_present = tag_search(tag_name, None)
+            content_present, name_present = self.tag_search(tag_name, None)
             if name_present:
                 await ctx.reply('Tag found!')
 
