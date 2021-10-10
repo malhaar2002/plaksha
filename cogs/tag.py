@@ -7,7 +7,7 @@ class Tag(commands.Cog):
     self.bot = bot
 
 
-  @client.group(aliases=['fav', 'push'], invoke_without_command=True)
+  @commands.group(aliases=['fav', 'push'], invoke_without_command=True)
   async def tag(ctx, *, tag_name:str=''):
     if tag_name == '':
       # Send a help command here
