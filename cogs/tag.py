@@ -8,7 +8,7 @@ class Tag(commands.Cog):
 
 
   @commands.group(aliases=['fav', 'push'], invoke_without_command=True)
-  async def tag(ctx, *, tag_name:str=''):
+  async def tag(self, ctx, *, tag_name:str=''):
     if tag_name == '':
       # Send a help command here
       if ctx.message.reference != None:
@@ -31,7 +31,7 @@ class Tag(commands.Cog):
 
 
   @tag.group(aliases=['+'], invoke_without_command=True)
-  async def create(ctx, *, tag_name:str=''):
+  async def create(self, ctx, *, tag_name:str=''):
 
 
     if ctx.message.reference != None:
@@ -78,7 +78,7 @@ class Tag(commands.Cog):
 
 
   @tag.group(aliases=['more'], invoke_without_command=True)
-  async def more_over(ctx, *, tag_name:str=''):
+  async def more_over(self, ctx, *, tag_name:str=''):
 
     if ctx.message.reference:
 
