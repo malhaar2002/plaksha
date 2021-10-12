@@ -24,7 +24,7 @@ class Miscellaneous(commands.Cog):
             Welcome_Embed.add_field(
                 name="Advice", value="> Get verified and gain access to the rest of the server 😄", inline=True)
             Welcome_Embed.add_field(
-                name="Advice", value="A commitment letter looks like [this]('https://i.ibb.co/cgpq1r7/Offer-Acceptance-Letter-Plaksha-for-Discord.png')", inline=True)
+                name="Advice-2", value="A commitment letter looks like [this]('https://i.ibb.co/cgpq1r7/Offer-Acceptance-Letter-Plaksha-for-Discord.png')", inline=True)
 
             Welcome_Embed.set_footer(
                 "If you're new to Discord, ['this video']('https://youtu.be/TJ13BA3-NR4') should be helpful")
