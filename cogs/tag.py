@@ -59,12 +59,12 @@ class Tag(commands.Cog):
 
         if tag_name == '':
 
-            await ctx.message.reply('```A help Message, no Name was provided```')
+            await ctx.message.reply('no NAME was provided. Use```plaksha tag NAME```')
             return
 
         elif Name_Search[1]:
 
-            await ctx.message.reply(f'```An embed\tHere is your content list for now:```{Name_Search[0]}')
+            await ctx.message.reply(f'Here is the content associated {Name_Search[0]}')
             return
 
         elif not(Name_Search[1]):
@@ -87,7 +87,7 @@ class Tag(commands.Cog):
 
                 if Content_Search[1] and not(Name_Search[1]):
                     self.Alias_Dict[Content_Search[0][-1]].append(tag_name)
-                    await ctx.send(f'Added an alias!\nUse```plaksha tag {tag_name}```to reference it in the future!!')
+                    await ctx.send(f'Added an alias! use```plaksha tag {tag_name}```to reference it in the future!!')
                     return
 
                 elif Name_Search[1]:
@@ -99,7 +99,7 @@ class Tag(commands.Cog):
                     self.Tag_Dict[tag_name] = []
                     self.Tag_Dict[tag_name].append(
                         (ctx.message.reference.resolved).content)
-                    await ctx.send(f'Tag created.\nUse```plaksha tag {tag_name}```to access it in the future!!!!')
+                    await ctx.send(f'Tag created! use```plaksha tag {tag_name}```to access it in the future!!!!')
 
                 else:
                     return
