@@ -42,12 +42,12 @@ class Miscellaneous(commands.Cog):
 
     @commands.command()
     async def ping(self, ctx: commands.Context):
-        """Get the bot's current websocket and API latency."""
+
         start_time = time.time()
         message = await ctx.send("Testing Ping...")
         end_time = time.time()
 
-        await message.edit(content=f"🏓 Pong!```{round(self.bot.latency * 1000)}ms\nAPI: {round((end_time - start_time) * 1000)}ms```")
+        await message.edit(content=f"🏓 Pong!```{round(self.client.latency * 1000)}ms\nAPI: {round((end_time - start_time) * 1000)}ms```")
 
 
 def setup(client):
