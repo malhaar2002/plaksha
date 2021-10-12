@@ -22,12 +22,21 @@ class Miscellaneous(commands.Cog):
 
             Welcome_Embed.add_field(
                 name="Info to verify", value=f"> Please share your commitment letter with one of the {get(member.guild.roles, id=897302377705644043)}", inline=True)
+
             Welcome_Embed.add_field(
                 name="Advice", value="> Get verified and gain access to the rest of the server 😄", inline=True)
-            Welcome_Embed.add_field(
-                name="Advice-2", value="A commitment letter looks like [this]('https://i.ibb.co/cgpq1r7/Offer-Acceptance-Letter-Plaksha-for-Discord.png')", inline=True)
 
-            await channel.send(f'> Welcome {member.mention}\n> You are currently <>', embed=Welcome_Embed)
+            Welcome_Embed.add_field(
+                name="Reference", value="> A commitment letter looks like [this](https://i.ibb.co/cgpq1r7/Offer-Acceptance-Letter-Plaksha-for-Discord.png)", inline=True)
+
+            Welcome_Embed.set_thumbnail(
+                url='https://scet.berkeley.edu/wp-content/uploads/7.-Plaksha-Logo.jpeg')
+
+            footer_detail = "If you're new to Discord, [this video](https://youtu.be/TJ13BA3-NR4) should be helpful"
+            Welcome_Embed.set_footer(
+                text=footer_detail, icon_url='https://i.ibb.co/55SdFph/Screen-Shot-2021-10-12-at-20-25-08.png')
+
+            await channel.send(f'> Welcome {member.mention}\n> You are currently {(get(member.guild.roles, id=834114153412296706)).mention}', embed=Welcome_Embed)
 
 
 def setup(client):
