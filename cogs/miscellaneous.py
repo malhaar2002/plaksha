@@ -13,8 +13,8 @@ class Miscellaneous(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
         channel = discord.utils.get(
-            member.guild.get_all_channels(), id=833750512276471878)
-        await member.add_roles(get(member.guild.channels, id=897167079176818729))
+            member.guild.channels, id=833750512276471878)
+        await member.add_roles(get(member.guild.roles, id=897167079176818729))
 
         if channel is not None:
             Welcome_Embed = discord.Embed(
