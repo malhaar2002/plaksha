@@ -12,15 +12,15 @@ class Miscellaneous(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
-        channel = get(self.client.guild.channels, id=833750512276471878)
-        await member.add_roles(get(self.client.guild.roles, id=897167079176818729))
+        channel = get(member.guild.channels, id=833750512276471878)
+        await member.add_roles(get(member.guild.roles, id=897167079176818729))
 
         if channel is not None:
             Welcome_Embed = discord.Embed(
                 title="```Welcome to the Discord of Plaksha's Founding Cohort!```", description=f"-Student Community", color=0x007878)
 
             Welcome_Embed.add_field(
-                name="Info to verify", value=f"> Please share your commitment letter with one of the {get(self.client.guild.roles, id=897302377705644043)}", inline=True)
+                name="Info to verify", value=f"> Please share your commitment letter with one of the {get(member.guild.roles, id=897302377705644043)}", inline=True)
             Welcome_Embed.add_field(
                 name="Advice", value="> Get verified and gain access to the rest of the server 😄", inline=True)
             Welcome_Embed.add_field(
