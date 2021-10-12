@@ -1,6 +1,7 @@
 from discord.ext import commands
 from discord.utils import get
 import discord
+import time
 
 
 # This for the member join event
@@ -32,7 +33,21 @@ class Miscellaneous(commands.Cog):
             Welcome_Embed.add_field(
                 name="Welcome Again", value="> If you're new to Discord, [this video](https://youtu.be/TJ13BA3-NR4) should be helpful", inline=True)
 
+            Welcome_Embed.set_thumbnail(
+                url='https://scet.berkeley.edu/wp-content/uploads/7.-Plaksha-Logo.jpeg')
+            Welcome_Embed.set_image(
+                url='https://i.ibb.co/cgpq1r7/Offer-Acceptance-Letter-Plaksha-for-Discord.png')
+
             await channel.send(f"> Welcome {member.mention}\n> You are currently {(get(member.guild.roles, id=834114153412296706)).mention}", embed=Welcome_Embed)
+
+    @commands.command()
+    async def ping(self, ctx: commands.Context):
+        """Get the bot's current websocket and API latency."""
+        start_time = time.time()
+        message = await ctx.send("Testing Ping...")
+        end_time = time.time()
+
+        await message.edit(content=f"🏓 Pong!```{round(self.bot.latency * 1000)}ms\nAPI: {round((end_time - start_time) * 1000)}ms```")
 
 
 def setup(client):
