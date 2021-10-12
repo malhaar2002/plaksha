@@ -30,7 +30,7 @@ class Miscellaneous(commands.Cog):
                 name="Reference", value="> An offer-letter similar to [this](https://i.ibb.co/cgpq1r7/Offer-Acceptance-Letter-Plaksha-for-Discord.png) commitment letter", inline=True)
 
             Welcome_Embed.set_thumbnail(
-                url='https://scet.berkeley.edu/wp-content/uploads/7.-Plaksha-Logo.jpeg')
+                image_url='https://scet.berkeley.edu/wp-content/uploads/7.-Plaksha-Logo.jpeg')
 
             await channel.send(f"> Welcome {member.mention}\n> You are currently {(get(member.guild.roles, id=834114153412296706)).mention}\nIf you're new to Discord, [this video](https://youtu.be/TJ13BA3-NR4) should be helpful", embed=Welcome_Embed)
 
