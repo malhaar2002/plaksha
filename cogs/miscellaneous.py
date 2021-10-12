@@ -14,7 +14,7 @@ class Miscellaneous(commands.Cog):
     async def on_member_join(self, member):
         channel = discord.utils.get(
             member.guild.channels, id=833750512276471878)
-        await member.add_roles(get(member.guild.roles, id=897167079176818729))
+        await member.add_roles(member.guild.get_role(897167079176818729))
 
         if channel is not None:
             Welcome_Embed = discord.Embed(
