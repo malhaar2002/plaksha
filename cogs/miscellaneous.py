@@ -11,7 +11,7 @@ class Miscellaneous(commands.Cog):
         self.client = client
 
     @commands.Cog.listener()
-    async def on_member_join(self, member: discord.Member):
+    async def on_member_join(self, member):
         channel = discord.utils.get(
             member.guild.channels, id=833750512276471878)
         await member.add_roles(get(member.guild.roles, id=897167079176818729))
