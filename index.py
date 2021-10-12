@@ -19,10 +19,6 @@ async def calling(ctx):
     pass
 
 
-def create_embed():
-    return 'Hm...'
-
-
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')

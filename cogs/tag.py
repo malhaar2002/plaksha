@@ -1,17 +1,19 @@
-import discord
-from discord.enums import ContentFilter
 from discord.ext import commands
-from discord.ext.commands import context
+from discord.ext.commands.core import has_any_role, has_role
 
 
 class Tag(commands.Cog):
     # Plakshans I am sorry!! The code is not well commented
     # Neither the commands send Embeds, the Bot messages are ugly, I know
-    # Only things left to solidify this approach is A database
+    # Only things left to solidify this approach is A database, plaksha's servers'database?
     # The more-over, delete, and the claim sub-commands.
 
+    # NON-VERIFIED PEOPLE CAN USE THIS COMMAND AS WELL
+    # UN-VERIFIED PEOPLE READING THIS ON GITHUB GO AWAY
+    # LOL
+
     def __init__(self, client):
-        self.bot = client
+        self.client = client
         self.Tag_Dict = {'first_name': ['content/links']}
         self.Alias_Dict = {'first_name': ['aliases']}
 
