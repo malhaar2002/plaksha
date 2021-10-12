@@ -1,106 +1,98 @@
 import discord
+from discord.enums import ContentFilter
 from discord.ext import commands
+from discord.ext.commands import context
 
 
 class Tag(commands.Cog):
-
-    Tag_Dict = {'first_name': ['content/links']}
-    Alias_Dict = {'first_name': ['aliases']}
-
     def __init__(self, client):
         self.bot = client
         self.Tag_Dict = {'first_name': ['content/links']}
         self.Alias_Dict = {'first_name': ['aliases']}
 
-    def tag_search(self, name, content):
-        global Tag_Dict, Alias_Dict
+    def content_search(self, content):
 
-        def content_search(self, content):
-            content_present = False
+        for first_name in self.Tag_Dict.keys():
+            for content_element in self.Tag_Dict[first_name]:
 
-            for first_name in self.Tag_Dict.keys():
-                for content_element in self.Tag_Dict[first_name]:
-                    if content_element == content:
-                        content_present = True
-                        return content_present
-            else:
-                content_present = False
-                return content_present
+                if content_element == content:
 
-        def name_search(self, name):
-            name_present = False
+                    Name_List = list(self.Alias_Dict[first_name])
+                    Name_List.append(first_name)
+                    return Name_List, True
 
-            for first_name in self.Alias_Dict.keys():
-                if first_name == name:
-                    name_present = True
-                    return name_present
+        else:
 
-                for alias_name in self.Alias_Dict[first_name]:
-                    if alias_name == name:
-                        name_present = True
-                        return name_present
+            return [''], False
 
-            else:
-                name_present = False
-                return name_present
+    def name_search(self, name):
 
-        content_present = content_search(name)
-        name_present = name_search(content)
+        for first_name in self.Tag_Dict.keys():
 
-        return content_present, name_present
+            if first_name == name:
+                return self.Tag_Dict[name], True
+
+            for alias_name in self.Alias_Dict[first_name]:
+
+                if alias_name == name:
+                    return self.Tag_Dict[name], True
+
+        else:
+
+            return [''], False
 
     @commands.group(aliases=['fav', 'push'], invoke_without_command=True)
     async def tag(self, ctx, *, tag_name: str = ''):
+
+        # There may come a problem if + or create is somehow
+        # registered as tag_name
+        # Use  if __ and tag_name != '+' or tag_name != 'create'  ???
+
+        Name_Search = (self.name_search(tag_name))
+
         if tag_name == '':
-            # Send a help command here
-            if ctx.message.reference != None:
-                if not(ctx.message.reference.fail_if_not_exists):
-                    await ctx.message.reply('Sorry this message may have been deleted!')
-                else:
-                    await ctx.send('*Please define what do you want to do with this message.*\n> For **creating a tag** of this, Use ```plaksha tag create NAME```', reference=ctx.message.reference)
-            else:
-                await ctx.message.reply('Please reply/refer to a message while tagging it.')
+
+            await ctx.message.reply('```A help Message, no Name was provided```')
+            return
+
+        elif Name_Search[1]:
+
+            await ctx.message.reply(f'```An embed\tHere is your content list for now:```{Name_Search[0]}')
+            return
+
+        elif not(Name_Search[1]):
+
+            await ctx.message.reply('```I was not able to find a tag with that name!!```')
+            return
 
         else:
-            content_present, name_present = self.tag_search(tag_name, None)
-            if name_present:
-                await ctx.reply('Tag found!')
+            await ctx.message.reply('```py\n# Something unexpected happened, inside Class Tag, command Tag\nelse:\n\tawait ctx.message.reply()```')
+            return
 
     @tag.group(aliases=['+'], invoke_without_command=True)
     async def create(self, ctx, *, tag_name: str = ''):
-
-        if ctx.message.reference != None:
-
-            if not(ctx.message.reference.fail_if_not_exists):
-                await ctx.message.reply('Sorry this message may have been deleted!')
-
-            else:
-
-                if tag_name != '':
-
-                    pass
-
-                else:
-                    await ctx.send(f'{(ctx.author).mention} Please input a NAME for the tag```plaksha tag create NAME```', reference=ctx.message.reference)
-                pass
-
-        else:
-            await ctx.message.reply('Please reply/refer to a message while tagging it.')
+        pass
 
     @tag.group(aliases=['more'], invoke_without_command=True)
     async def more_over(self, ctx, *, tag_name: str = ''):
+        await ctx.message.reply('```Um.. **more_over** method for Tag objects has not been coded | Wanna help? Contact Wizards of the server```')
+        print(tag_name)
 
-        if ctx.message.reference:
+        return
 
-            if not(ctx.message.reference.fail_if_not_exists):
-                await ctx.message.reply('Sorry this message may have been deleted!')
+    @tag.group(aliases=['remove', '-'], invoke_without_command=True)
+    async def delete(self, ctx, *, tag_name: str = ''):
+        await ctx.message.reply('```Um.. **delete** method for Tag objects has not been coded | Wanna help? Contact Wizards of the server```')
+        print(tag_name)
 
-            else:
-                return
+        return
 
-        else:
-            ctx.message.reply(
-                'Please reply/refer to a message while tagging it.')
+    @tag.group(aliases=['grab'], invoke_without_command=True)
+    async def claim(self, ctx, *, tag_name: str = ''):
+        await ctx.message.reply('```Um.. **claim** method for Tag objects has not been coded | Wanna help? Contact Wizards of the server```')
+        print(tag_name)
+
+        return
 
 
 def setup(client):
