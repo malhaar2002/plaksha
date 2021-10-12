@@ -27,8 +27,8 @@ class Miscellaneous(commands.Cog):
             Welcome_Embed.add_field(
                 name="Advice-2", value="A commitment letter looks like [this]('https://i.ibb.co/cgpq1r7/Offer-Acceptance-Letter-Plaksha-for-Discord.png')", inline=True)
 
-            Welcome_Embed.set_footer(
-                "If you're new to Discord, ['this video']('https://youtu.be/TJ13BA3-NR4') should be helpful")
+            footer_detail = "If you're new to Discord, ['this video']('https://youtu.be/TJ13BA3-NR4') should be helpful"
+            Welcome_Embed.set_footer(footer_detail)
 
             Welcome_Embed.set_thumbnail(
                 'https://scet.berkeley.edu/wp-content/uploads/7.-Plaksha-Logo.jpeg')
