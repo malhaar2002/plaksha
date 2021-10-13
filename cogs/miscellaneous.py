@@ -51,14 +51,14 @@ class Miscellaneous(commands.Cog):
             await channel.send(f"> Welcome {member.mention}\n> You are currently {(get(member.guild.roles, id=834114153412296706)).mention}\n\u200b", embed=Welcome_Embed)
 
     @commands.command(aliases=['Plakshan'])
-    async def verify(self, ctx, user: discord.member):
+    async def verify(self, ctx, user: discord.user):
         if get(ctx.guild.roles, id=834114153412296706) in user.roles:
             await user.remove_roles(get(ctx.guild.roles, id=834114153412296706))
 
         await user.add_roles(get(ctx.guild.roles, id=833698580992229406))
         await ctx.send(f'🎉 {user.mention} was verified!!', delete_after=10)
 
-    @commands.command()
+    @ commands.command()
     async def ping(self, ctx: commands.Context):
 
         start_time = time.time()
@@ -67,8 +67,8 @@ class Miscellaneous(commands.Cog):
 
         await message.edit(content=f"🏓 Pong!```{round(self.client.latency * 1000)}ms\nAPI: {round((end_time - start_time) * 1000)}ms```")
 
-    @commands.command(aliases=['burn'], pass_context=True)
-    @commands.has_permissions(administrator=True)
+    @ commands.command(aliases=['burn'], pass_context=True)
+    @ commands.has_permissions(administrator=True)
     async def clean(self, ctx, amount: int):
 
         await ctx.channel.purge(limit=amount, check=lambda message: message.pinned == False)
@@ -76,7 +76,7 @@ class Miscellaneous(commands.Cog):
         await ctx.send(f'```🧹 {amount} messages were cleaned` by {ctx.author}``', delete_after=5)
         pass
 
-    @commands.Cog.listener()
+    @ commands.Cog.listener()
     async def on_reaction_add(self, reaction):
 
         members_now = len([member_element for member_element in self.client.get_all_members(
