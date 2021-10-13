@@ -1,4 +1,5 @@
 from discord.ext import commands
+import discord
 # This makes discord.ext.commands => commands
 
 
@@ -10,9 +11,6 @@ class References(commands.Cog):
     @commands.group(aliases=['my_card', 'reference'], invoke_without_command=True)
     async def card(self, ctx):
         if ctx.message.reference:
-
-            await ctx.send(f'What do you want to do with this message? Use \n> ```plaksha card create "YOUR_NAME"``` or Use\n> ```plaksha card add_field "Linked-In" "https://linkedin.com/Someone"```')
-            await ctx.message.delete()
 
             return
 
