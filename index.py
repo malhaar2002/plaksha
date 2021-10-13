@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import os
+from datetime import datetime
 
 
 print('Logging in...')
@@ -11,12 +12,8 @@ print('Logged in!   ')
 
 @client.command()
 async def calling(ctx):
-
-    commencement_date = '09/11/2021'
-    days = "39 - today's date (october)"
-
-    await ctx.send(f'Indeed, just {days} days before {commencement_date}')
-    pass
+    days = 40 - datetime.now().day
+    await ctx.send(f'Indeed, just {days} days before the 9th of November!')
 
 
 for filename in os.listdir('./cogs'):
