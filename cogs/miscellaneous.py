@@ -57,6 +57,7 @@ class Miscellaneous(commands.Cog):
         await ctx.channel.purge(limit=amount, check=lambda message: message.pinned == False)
 
         await ctx.send(f'```🧹 {amount} messages were cleaned` by {ctx.author}``', delete_after=5)
+        pass
 
 
 def setup(client):
