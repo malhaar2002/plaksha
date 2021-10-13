@@ -14,6 +14,15 @@ class Miscellaneous(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
+
+        members_now = len([member_element for member_element in self.client.get_all_members(
+        ) if not member_element.bot]) - 5
+
+        count_channel = discord.utils.get(
+            member.guild.channels, id=897736352676847617)
+
+        await count_channel.edit(name=f'👋🏽・members・{members_now}')
+
         channel = discord.utils.get(
             member.guild.channels, id=833750512276471878)
         await member.add_roles(get(member.guild.roles, id=834114153412296706))
@@ -58,6 +67,21 @@ class Miscellaneous(commands.Cog):
 
         await ctx.send(f'```🧹 {amount} messages were cleaned` by {ctx.author}``', delete_after=5)
         pass
+
+    @commands.Cog.listener()
+    async def on_reaction_add(self, reaction):
+
+        members_now = len([member_element for member_element in self.client.get_all_members(
+        ) if not member_element.bot]) - 5
+
+        if reaction.emoji == '⭐':
+            if reaction.message.channel.id != 887571589200240700:
+                if len(reaction.count) >= members_now/20:
+                    await reaction.message.reply(f'```This message has been added to startboard!!```\nAccess it here {reaction.message.channel}')
+                    await (get(reaction.author.guild.channels, id=887571589200240700)).send(reaction.message.content)
+
+        else:
+            pass
 
 
 def setup(client):
