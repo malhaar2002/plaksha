@@ -52,8 +52,14 @@ class Miscellaneous(commands.Cog):
     @commands.command(pass_context=True)
     @commands.has_permissions(administrator=True)
     async def clean(self, ctx, limit: int):
-        await ctx.channel.purge(limit=limit)
-        await ctx.send(f'🧹 {limit}')
+
+        await ctx.send('Clearing messages...')
+        async for msg in self.client.logs_from(ctx.channel):
+
+            if not msg.pinned:
+                await self.client.delete_message(msg)
+
+        await ctx.send(f'🧹 {limit} messages were cleaned')
 
     @clean.error
     async def clear_error(self, ctx, error):
