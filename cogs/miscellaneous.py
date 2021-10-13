@@ -51,12 +51,12 @@ class Miscellaneous(commands.Cog):
 
     @commands.command(pass_context=True)
     @commands.has_permissions(administrator=True)
-    async def clean(ctx, limit: int):
+    async def clean(self, ctx, limit: int):
         await ctx.channel.purge(limit=limit)
         await ctx.reply(f'🧹 {limit}')
 
     @clean.error
-    async def clear_error(ctx, error):
+    async def clear_error(self, ctx, error):
         if isinstance(error, commands.MissingPermissions):
             await ctx.send("You cant do not have admin-access!!")
 
