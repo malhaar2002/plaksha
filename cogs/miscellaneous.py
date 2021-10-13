@@ -53,7 +53,7 @@ class Miscellaneous(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def clean(self, ctx, limit: int):
         await ctx.channel.purge(limit=limit)
-        await ctx.reply(f'🧹 {limit}')
+        await ctx.send(f'🧹 {limit}')
 
     @clean.error
     async def clear_error(self, ctx, error):
