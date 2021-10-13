@@ -51,20 +51,11 @@ class Miscellaneous(commands.Cog):
 
     @commands.command(pass_context=True)
     @commands.has_permissions(administrator=True)
-    async def clean(self, ctx, limit: int):
+    async def clean(self, ctx, amount: int):
 
-        await ctx.send('Clearing messages...')
-        async for msg in self.client.logs_from(ctx.channel):
+        await ctx.channel.purge(limit=amount, check=lambda message: message.pinned == False)
 
-            if not msg.pinned:
-                await self.client.delete_message(msg)
-
-        await ctx.send(f'🧹 {limit} messages were cleaned')
-
-    @clean.error
-    async def clear_error(self, ctx, error):
-        if isinstance(error, commands.MissingPermissions):
-            await ctx.send("You cant do not have admin-access!!")
+        await ctx.send(f'```🧹 {amount} messages were cleaned```')
 
 
 def setup(client):
