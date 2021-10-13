@@ -26,8 +26,9 @@ Using the `\begin` or `\end` in the *LaTeX* will probably result in something fa
 
 class Latex(commands.Cog):
     # TODO: Check for bad token or login credentials using try catch
-    def __init__(self):
-        super().__init__()
+    def __init__(self, client):
+
+        self.client = client
 
         self.check_for_config()
         self.settings = json.loads(open('settings.json').read())
@@ -43,17 +44,6 @@ class Latex(commands.Cog):
         chanrestrict.setup(self.settings['channels']['whitelist'],
                            self.settings['channels']['blacklist'])
 
-        # Check if user is using a token or login
-        if self.settings['login_method'] == 'token':
-            self.run(self.settings['login']['token'])
-        elif self.settings['login_method'] == 'account':
-            self.login(self.settings['login']['email'],
-                       self.settings['login']['password'])
-            self.run()
-        else:
-            raise Exception(
-                'Bad config: "login_method" should set to "login" or "token"')
-
     # Check that config exists
     def check_for_config(self):
         if not os.path.isfile('settings.json'):
@@ -64,15 +54,6 @@ class Latex(commands.Cog):
     def vprint(self, *args, **kwargs):
         if self.settings.get('verbose', False):
             print(*args, **kwargs)
-
-    # Outputs bot info to user
-    @asyncio.coroutine
-    def on_ready(self):
-        print('------')
-        print('Logged in as')
-        print(self.user.name)
-        print(self.user.id)
-        print('------')
 
     async def on_message(self, message):
         if chanrestrict.check(message):
@@ -154,10 +135,6 @@ class Latex(commands.Cog):
             os.remove(outputnum + '1.png')
         except OSError:
             pass
-
-
-if __name__ == "__main__":
-    Latex()
 
 
 def setup(client):
