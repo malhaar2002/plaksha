@@ -49,13 +49,15 @@ class Miscellaneous(commands.Cog):
 
         await message.edit(content=f"🏓 Pong!```{round(self.client.latency * 1000)}ms\nAPI: {round((end_time - start_time) * 1000)}ms```")
 
-    @commands.command(pass_context=True)
+    @commands.command(aliases=['burn'], pass_context=True)
     @commands.has_permissions(administrator=True)
     async def clean(self, ctx, amount: int):
 
         await ctx.channel.purge(limit=amount, check=lambda message: message.pinned == False)
 
-        await ctx.send(f'```🧹 {amount} messages were cleaned```')
+        resp_ = await ctx.send(f'```🧹 {amount} messages were cleaned` by {ctx.author.username}``')
+        time.sleep(5)
+        await resp_.delete()
 
 
 def setup(client):
