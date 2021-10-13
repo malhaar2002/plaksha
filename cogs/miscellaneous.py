@@ -49,6 +49,17 @@ class Miscellaneous(commands.Cog):
 
         await message.edit(content=f"🏓 Pong!```{round(self.client.latency * 1000)}ms\nAPI: {round((end_time - start_time) * 1000)}ms```")
 
+    @commands.command(pass_context=True)
+    @commands.has_permissions(administrator=True)
+    async def clean(ctx, limit: int):
+        await ctx.channel.purge(limit=limit)
+        await ctx.reply(f'🧹 {limit}')
+
+    @clean.error
+    async def clear_error(ctx, error):
+        if isinstance(error, commands.MissingPermissions):
+            await ctx.send("You cant do not have admin-access!!")
+
 
 def setup(client):
     client.add_cog(Miscellaneous(client))
