@@ -79,7 +79,7 @@ class Miscellaneous(commands.Cog):
         pass
 
     @ commands.Cog.listener()
-    async def on_reaction_add(self, reaction):
+    async def on_reaction_add(self, reaction: discord.reaction):
 
         members_now = len([member_element for member_element in self.client.get_all_members(
         ) if not member_element.bot]) - 5
