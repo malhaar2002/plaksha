@@ -51,7 +51,7 @@ class Miscellaneous(commands.Cog):
             await channel.send(f"> Welcome {member.mention}\n> You are currently {(get(member.guild.roles, id=834114153412296706)).mention}\n\u200b", embed=Welcome_Embed)
 
     @commands.command(aliases=['Plakshan'])
-    async def verify(self, ctx, user: discord.user):
+    async def verify(self, ctx, user: discord.User):
         if get(ctx.guild.roles, id=834114153412296706) in user.roles:
             await user.remove_roles(get(ctx.guild.roles, id=834114153412296706))
 
