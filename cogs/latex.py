@@ -1,3 +1,6 @@
+# SOURCE: https://github.com/DXsmiley/LatexBot
+# Method: Latex files in general linked with an image API
+
 import discord
 import urllib.request
 import random
