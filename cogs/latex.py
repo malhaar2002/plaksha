@@ -19,9 +19,9 @@ class Latex(commands.Cog):
         self.client = client
 
         self.default_data = {
-            "fsize": "25px",
-            "fcolor": "cccccc",
-            "mode": 0,
+            "fsize": "40px",
+            "fcolor": "007878",
+            "mode": 1,
             "out": 1,
             "errors": 1,
             "preamble": r"\usepackage{amsmath}\usepackage{amsfonts}\usepackage{amssymb}"
@@ -44,7 +44,7 @@ class Latex(commands.Cog):
                         await ctx.send(f"`{formula_data[2]}`")
                         return
                     image_url = formula_data[1].split()[0]
-                    print("Sending", formula)
+
                     embed.set_image(url=image_url)
                     message: discord.Message = await ctx.message.reply(embed=embed)
             try:
