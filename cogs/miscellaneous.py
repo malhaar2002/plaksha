@@ -57,7 +57,7 @@ class Miscellaneous(commands.Cog):
         await ctx.channel.purge(limit=amount, check=lambda message: message.pinned == False)
 
         resp_ = await ctx.send(f'```🧹 {amount} messages were cleaned` by {ctx.author}``')
-        asyncio.sleep(5)
+        await asyncio.sleep(5)
         await resp_.delete()
 
 
