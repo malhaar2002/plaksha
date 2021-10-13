@@ -57,7 +57,7 @@ class Miscellaneous(commands.Cog):
 
         resp_ = await ctx.send(f'```🧹 {amount} messages were cleaned` by {ctx.author.username}``')
         time.sleep(5)
-        await resp_.delete()
+        resp_.delete()
 
 
 def setup(client):
