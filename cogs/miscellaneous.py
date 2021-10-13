@@ -32,7 +32,7 @@ class Miscellaneous(commands.Cog):
                 title="```Discord of Plaksha's Founding Cohort!```", description=f"-Student Community", color=0x007878)
 
             Welcome_Embed.add_field(
-                name="Info to verify", value=f"> Please share your offer letter with one of the {get(member.guild.roles, id=897302377705644043)}", inline=True)
+                name="Info to verify", value=f"> Please share your offer letter with one of the {get(member.guild.roles, id=834113134209400863)}", inline=True)
 
             Welcome_Embed.add_field(
                 name="Advice", value="> **Get verified and gain access to the rest of the server 😄**", inline=True)
@@ -49,6 +49,13 @@ class Miscellaneous(commands.Cog):
                 url='https://i.ibb.co/cgpq1r7/Offer-Acceptance-Letter-Plaksha-for-Discord.png')
 
             await channel.send(f"> Welcome {member.mention}\n> You are currently {(get(member.guild.roles, id=834114153412296706)).mention}\n\u200b", embed=Welcome_Embed)
+
+    @commands.command(aliases=['Plakshan'])
+    async def verify(self, ctx, user: discord.user):
+        if get(ctx.guild.roles, id=834114153412296706) in user.roles:
+            await user.remove_roles(get(ctx.guild.roles, id=834114153412296706))
+
+        await user.add_roles(get(ctx.guild.roles, id=833698580992229406))
 
     @commands.command()
     async def ping(self, ctx: commands.Context):
