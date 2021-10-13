@@ -51,11 +51,12 @@ class Miscellaneous(commands.Cog):
             await channel.send(f"> Welcome {member.mention}\n> You are currently {(get(member.guild.roles, id=834114153412296706)).mention}\n\u200b", embed=Welcome_Embed)
 
     @commands.command(aliases=['Plakshan'])
-    async def verify(self, ctx, user: discord.user):
+    async def verify(self, ctx, user: discord.member):
         if get(ctx.guild.roles, id=834114153412296706) in user.roles:
             await user.remove_roles(get(ctx.guild.roles, id=834114153412296706))
 
         await user.add_roles(get(ctx.guild.roles, id=833698580992229406))
+        await ctx.send(f'🎉 {user.mention} was verified!!', delete_after=10)
 
     @commands.command()
     async def ping(self, ctx: commands.Context):
