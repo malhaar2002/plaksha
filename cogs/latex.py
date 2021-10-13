@@ -7,6 +7,7 @@ import shutil
 import asyncio
 
 import chanrestrict
+from discord.ext import commands
 
 LATEX_TEMPLATE = "template.tex"
 
@@ -23,7 +24,7 @@ Using the `\begin` or `\end` in the *LaTeX* will probably result in something fa
 """
 
 
-class LatexBot(discord.Client):
+class Latex(commands.Cog):
     # TODO: Check for bad token or login credentials using try catch
     def __init__(self):
         super().__init__()
@@ -156,4 +157,8 @@ class LatexBot(discord.Client):
 
 
 if __name__ == "__main__":
-    LatexBot()
+    Latex()
+
+
+def setup(client):
+    client.add_cog(Latex(client))
