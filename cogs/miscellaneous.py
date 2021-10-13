@@ -52,6 +52,8 @@ class Miscellaneous(commands.Cog):
 
     @commands.command(aliases=['Plakshan'])
     async def verify(self, ctx, user: discord.Member):
+        await ctx.message.delete()
+
         if get(ctx.guild.roles, id=834114153412296706) in user.roles:
             await user.remove_roles(get(ctx.guild.roles, id=834114153412296706))
 
