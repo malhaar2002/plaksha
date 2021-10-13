@@ -2,6 +2,7 @@ from discord.ext import commands
 from discord.utils import get
 import discord
 import time
+import asyncio
 
 
 # This for the member join event
@@ -56,7 +57,7 @@ class Miscellaneous(commands.Cog):
         await ctx.channel.purge(limit=amount, check=lambda message: message.pinned == False)
 
         resp_ = await ctx.send(f'```🧹 {amount} messages were cleaned` by {ctx.author}``')
-        time.sleep(5)
+        asyncio.sleep(5)
         await resp_.delete()
 
 
