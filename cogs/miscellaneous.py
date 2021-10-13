@@ -38,7 +38,7 @@ class Miscellaneous(commands.Cog):
             Welcome_Embed.set_image(
                 url='https://i.ibb.co/cgpq1r7/Offer-Acceptance-Letter-Plaksha-for-Discord.png')
 
-            await channel.send(f"> Welcome {member.mention}\n> You are currently {(get(member.guild.roles, id=834114153412296706)).mention}", embed=Welcome_Embed)
+            await channel.send(f"> Welcome {member.mention}\n> You are currently {(get(member.guild.roles, id=834114153412296706)).mention}\n\u200b", embed=Welcome_Embed)
 
     @commands.command()
     async def ping(self, ctx: commands.Context):
