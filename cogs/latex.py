@@ -1,10 +1,15 @@
-import discord
-import aiohttp
-from discord.ext import commands
+#  Satandard API calls
+#  But it is interesting to note how these API generate these images
+#  https://github.com/alvesvaren/QuickLaTeX-bot/blob/master/main.py
+
 import multidict
 import aiohttp.payload as payload
 from urllib.parse import urlencode, quote
 import asyncio
+
+import discord
+import aiohttp
+from discord.ext import commands
 
 
 class Latex(commands.Cog):
@@ -21,6 +26,33 @@ class Latex(commands.Cog):
             "errors": 1,
             "preamble": r"\usepackage{amsmath}\usepackage{amsfonts}\usepackage{amssymb}"
         }
+
+    @commands.command(aliases=["l", "L"])
+    async def latex(self, ctx: commands.Context, *, formula: str):
+        async with aiohttp.ClientSession() as session:
+            async with ctx.typing():
+
+                embed = discord.Embed()
+                form_data = self.CustomFormData()
+                form_data.add_field("formula", formula)
+                form_data.add_fields(multidict.MultiDict(self.default_data))
+
+                async with session.post("https://www.quicklatex.com/latex3.f", data=form_data) as response:
+                    formula_data = (await response.text()).splitlines()
+                    if int(formula_data[0]) != 0:
+                        await ctx.send("That isn't a valid latex expression")
+                        await ctx.send(f"`{formula_data[2]}`")
+                        return
+                    image_url = formula_data[1].split()[0]
+                    print("Sending", formula)
+                    embed.set_image(url=image_url)
+                    message: discord.Message = await ctx.message.reply(embed=embed)
+            try:
+                before, after = await self.client.wait_for("message_edit", check=lambda old, _: old.id == ctx.message.id, timeout=600)
+                await message.delete()
+                await self.client.process_commands(after)
+            except asyncio.TimeoutError:
+                pass
 
     class CustomFormData(aiohttp.FormData):
         def _gen_form_urlencoded(self) -> payload.BytesPayload:
@@ -41,33 +73,6 @@ class Latex(commands.Cog):
                 urlencode(data, doseq=False, encoding=charset,
                           quote_via=quote).encode(),
                 content_type=content_type)
-
-    @commands.command(aliases=["l", "L"])
-    async def latex(self, ctx: commands.Context, *, formula: str):
-        async with aiohttp.ClientSession() as session:
-            async with ctx.typing():
-                embed = discord.Embed()
-                embed.set_author(name=ctx.message.author.display_name, icon_url=str(
-                    ctx.message.author.avatar_url))
-                form_data = self.CustomFormData()
-                form_data.add_field("formula", formula)
-                form_data.add_fields(multidict.MultiDict(self.default_data))
-                async with session.post("https://www.quicklatex.com/latex3.f", data=form_data) as response:
-                    formula_data = (await response.text()).splitlines()
-                    if int(formula_data[0]) != 0:
-                        await ctx.send("That isn't a valid latex expression")
-                        await ctx.send(f"`{formula_data[2]}`")
-                        return
-                    image_url = formula_data[1].split()[0]
-                    print("Sending", formula)
-                    embed.set_image(url=image_url)
-                    message: discord.Message = await ctx.send(embed=embed)
-            try:
-                before, after = await self.client.wait_for("message_edit", check=lambda old, _: old.id == ctx.message.id, timeout=600)
-                await message.delete()
-                await self.client.process_commands(after)
-            except asyncio.TimeoutError:
-                pass
 
 
 def setup(client):
