@@ -98,7 +98,7 @@ class Miscellaneous(commands.Cog):
     @commands.command()
     async def source(self, ctx, *, command):
         '''See the source code for any command.'''
-        source = str(inspect.getsource(self.bot.get_command(command).callback))
+        source = str(inspect.getsource(self.client.get_command(command).callback))
         fmt = '```py\n' + source.replace('`', '\u200b`') + '\n```'
         if len(fmt) > 2000:
             await ctx.send("The Source code exceed the word limit of discord.See it on github.<https://github.com/yogesh-malware>")
