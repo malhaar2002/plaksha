@@ -4,6 +4,8 @@ import discord
 import time
 import asyncio
 
+import inspect
+
 
 # This for the member join event
 
